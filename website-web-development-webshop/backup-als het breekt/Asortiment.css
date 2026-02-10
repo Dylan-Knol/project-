@@ -1,0 +1,72 @@
+
+
+body{margin: 0px; color: white; background-color: rgb(60, 103, 60);}
+
+#logo{display: block; width: 8rem; margin-left: auto;margin-right: auto;}
+.div-options{text-align: center; width: 100%; background-color: rgb(32, 101, 32);}
+
+#footer{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    background-color: rgb(25, 67, 25);}
+.footer-text p{
+    font-size: 0.9rem;}
+#openingstijden{
+    margin-top: 0px;
+    font-size: 1.3rem;
+}
+
+div{
+text-align: center; size: 100%;
+}
+
+img{
+max-height: 100%;
+max-width: 100%;
+border-top-left-radius:10px;
+border-top-right-radius:10px; 
+}
+.container div img{
+    height: 80%;
+    width: 100%;
+}
+.container{
+    display: grid;
+    grid-template-columns:auto auto auto auto;
+    gap: 1rem;
+    background-color:#FFFFFF;
+    padding-top:3rem; 
+    padding-bottom: 3rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+
+.container div {
+  background-color: #D9EDB5;
+  color: black;
+  text-align: center;
+  font-size: 100%;
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+  
+}
+
+.item1{
+grid-row-start: 2;
+grid-row-end: 4;
+grid-column-start: 1;
+grid-column-end: 3;
+}
+
+
+
+
+
+
+
+
+
+
+

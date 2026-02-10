@@ -1,0 +1,220 @@
+body{margin: 0px; color: white; background-color: #3F593C;}
+
+#logo{display: block; width: 16vw; margin-left: auto;margin-right: auto;}
+.div-options{text-align: center; width:100%; background-color: #283F25; font-size: 2vw;}
+.div-options a{padding-left: 1vw; padding-right: 1vw;}
+
+/*code homepage*/
+.image-main-big{width: 100%; display: block; height: auto;}
+.container-home{
+    display: grid;
+}
+#image-background{
+    width: 100%;
+    height: 35vw;
+    background-image: url(images/pexels-jmark-250716.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin: 0px;
+    border: 0px;
+    padding-top: 20vw;
+    padding-bottom: 0vw;
+}
+#image-background div p{
+    font-family: sans-serif;
+    text-shadow: 0 10px 29px rgba(0,0,0,1);
+    font-size: 4vw;
+    text-align: center;
+    margin-top: 0vw;
+}
+#image-background p{
+    text-shadow: 0 10px 29px rgba(0,0,0,1);
+    font-size: 2vw;
+    text-align: center;
+    margin-top: 0vw;
+}
+
+.text-bloemen{grid-area: text-bloemen; text-align: center; font-size: 3vw;}
+.plaatje1{grid-area: plaatje1;}
+.plaatje2{grid-area: plaatje2;}
+.plaatje3{grid-area: plaatje3;}
+.plaatje4{grid-area: plaatje4;}
+.plaatje5{grid-area: plaatje5;}
+.plaatje6{grid-area: plaatje6;}
+
+.grid-container-bloemen{
+
+    padding-bottom: 4vw;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    background-color: #F6F8E7;
+    height: 50%;
+    display: grid;
+    
+    grid-template-areas: 
+        'text-bloemen'
+        'plaatje1'
+        'plaatje2'
+        'plaatje3'
+        'plaatje4'
+        'plaatje5'
+        'plaatje6'
+    ;
+    @media (min-width: 500px){
+        grid-template-areas: 
+        'text-bloemen text-bloemen'
+        'plaatje1 plaatje2'
+        'plaatje3 plaatje4'
+        'plaatje5 plaatje6'
+    ;
+    }
+    @media (min-width: 800px){
+        grid-template-areas: 
+        'text-bloemen text-bloemen text-bloemen'
+        'plaatje1 plaatje2 plaatje3'
+        'plaatje4 plaatje5 plaatje6'
+        ;
+    }
+}
+.grid-container-bloemen div{
+    border-radius: 12px;
+    margin-left: auto; margin-right: auto;
+    width: 80%;
+    height: 90%;
+    text-align: center;
+    background-color: #D9EDB5;
+    color: black;
+    margin-top: 4vw;
+
+    font-size: 2vw;
+}
+.grid-container-bloemen div img{
+    height: 17vw;
+    width: 20vw;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    width: 100%;
+    overflow: hidden;
+}
+.grid-container-bloemen div p{
+    margin: 0px;
+    font-size: 100%;
+}
+
+
+.title-welkom-nora-flora{grid-area: title-welkom-nora-flora; font-size: 2rem;}
+.text-welkom-nora-flora{grid-area: text-welkom-nora-flora; font-size: 1.80vw;}
+.plaatje-welkom-nora-flora{grid-area: plaatje-welkom-nora-flora; width: 33%;}
+
+.grid-container-welkom-nora-flora{
+    text-align: center;
+    display: grid;
+    grid-template-areas: 
+    'title-welkom-nora-flora title-welkom-nora-flora title-welkom-nora-flora plaatje-welkom-nora-flora plaatje-welkom-nora-flora'
+    'text-welkom-nora-flora text-welkom-nora-flora text-welkom-nora-flora plaatje-welkom-nora-flora plaatje-welkom-nora-flora'
+    'text-welkom-nora-flora text-welkom-nora-flora text-welkom-nora-flora plaatje-welkom-nora-flora plaatje-welkom-nora-flora'
+    'text-welkom-nora-flora text-welkom-nora-flora text-welkom-nora-flora plaatje-welkom-nora-flora plaatje-welkom-nora-flora'
+    ;
+}
+.grid-container-welkom-nora-flora div{
+    padding: 1.3rem;
+    padding-left: 3rem;
+    margin-left: auto; margin-right: auto;
+}
+.plaatje-welkom-nora-flora img{
+    border-radius: 12px;
+    width: 160%;
+}
+
+/*code contact page*/
+.lijntje{
+    background-color: rgb(138, 236, 138);
+}
+
+.titel-contact{grid-area: titel-contact;}
+.text-contact{grid-area: text-contact;}
+.email-contact{grid-area: email-contact;}
+.vraag-contact{grid-area: vraag-contact;}
+.type-contact{grid-area: type-contact;}
+.verzend-contact{grid-area: verzend-contact;}
+.grid-container-contact{
+    display: grid;
+    grid-template-areas: 
+    'titel-contact titel-contact'
+    'text-contact vraag-contact'
+    'email-contact type-contact'
+    'email-contact verzend-contact'
+    ;
+}
+.grid-container-contact div{
+    width: 49%;
+    text-align: center;
+}
+.grid-container-contact .vraag-contact input{width: 20em; height: 20em;}
+.grid-container-contact .type-contact input{width: 18em;}
+.grid-container-contact p{text-align: center;}
+
+/*code assortiment page*/
+div{
+text-align: center; size: 100%;
+}
+
+img{
+max-height: 100%;
+max-width: 100%;
+border-top-left-radius:10px;
+border-top-right-radius:10px; 
+}
+.container div img{
+    height: 70%;
+    width: 100%;
+}
+
+.bloem1{grid-area: bloem1;}
+.bloem2{grid-area: bloem2;}
+.bloem3{grid-area: bloem3;}
+.bloem4{grid-area: bloem4;}
+.bloem5{grid-area: bloem5;}
+.bloem6{grid-area: bloem6;}
+.bloem7{grid-area: bloem7;}
+.bloem8{grid-area: bloem8;}
+.bloem9{grid-area: bloem9;}
+.container{
+    display: grid;
+    grid-template-areas:
+    "bloem1 bloem2 bloem3 bloem4"
+    "bloem5 bloem5 bloem6 bloem7"
+    "bloem5 bloem5 bloem8 bloem9";
+    gap: 1rem;
+    background-color:#FFFFFF;
+    padding-top:3rem; 
+    padding-bottom: 3rem;
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+
+.container div {
+ border-radius: 12px;
+    margin-left: auto; margin-right: auto;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: #D9EDB5;
+    color: black;
+    margin-top: 4vw;
+
+    font-size: 2vw;
+
+}
+
+#footer{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    background-color: rgb(25, 67, 25);}
+.footer-text p{
+    font-size: 1.8vw;}
+#openingstijden{
+    margin-top: 0px;
+    font-size: 2.6vw;
+}

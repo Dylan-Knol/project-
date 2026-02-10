@@ -1,0 +1,43 @@
+body{margin: 0px; color: white; background-color: rgb(60, 103, 60);}
+
+#logo{display: block; width: 8rem; margin-left: auto;margin-right: auto;}
+.div-options{text-align: center; width:100%; background-color: rgb(25, 67, 25);}
+
+.lijntje{
+    background-color: rgb(138, 236, 138);
+}
+
+.titel-contact{grid-area: titel-contact;}
+.text-contact{grid-area: text-contact;}
+.email-contact{grid-area: email-contact;}
+.vraag-contact{grid-area: vraag-contact;}
+.type-contact{grid-area: type-contact;}
+.verzend-contact{grid-area: verzend-contact;}
+.grid-container-contact{
+    display: grid;
+    grid-template-areas: 
+    'titel-contact titel-contact'
+    'text-contact vraag-contact'
+    'email-contact type-contact'
+    'email-contact verzend-contact'
+    ;
+}
+.grid-container-contact div{
+    width: 49%;
+    text-align: center;
+}
+.grid-container-contact .vraag-contact input{width: 20em; height: 20em;}
+.grid-container-contact .type-contact input{width: 18em;}
+.grid-container-contact p{text-align: center;}
+
+#footer{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    background-color: rgb(25, 67, 25);}
+.footer-text p{
+    font-size: 1.8vw;}
+#openingstijden{
+    margin-top: 0px;
+    font-size: 2.6vw;
+}
