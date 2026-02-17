@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Nora's Flora</title>
+    <link rel="stylesheet" href="Nora's-Flora-teamnaam.css">
+    <style>
+        .admin-wrapper {
+            padding: 40px 60px;
+            background-color: #F6F8E7;
+            min-height: 80vh;
+        }
+
+        .admin-title {
+            text-align: center;
+            color: #3F593C;
+            margin-bottom: 30px;
+        }
+
+        .admin-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #D9EDB5;
+            padding: 30px;
+            border-radius: 12px;
+            color: black;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #3F593C;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #999;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            font-family: Arial, sans-serif;
+        }
+
+        #bloemForm button {
+            width: 100%;
+            padding: 12px;
+            background-color: #283F25;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #bloemForm button:hover {
+            background-color: #1f2f1c;
+        }
+
+        #successMessage {
+            display: none;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #90EE90;
+            border-radius: 8px;
+            text-align: center;
+            color: #155724;
+        }
+
+        #errorMessage {
+            display: none;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #FFB6C6;
+            border-radius: 8px;
+            text-align: center;
+            color: #721c24;
+        }
+
+        .admin-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .admin-footer a {
+            color: #283F25;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .admin-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-wrapper">
+        <h1 class="admin-title">Admin Panel - Bloem Toevoegen</h1>
+        
+        <div class="admin-container">
+            
+            <div id="successMessage">
+                ✓ Bloem succesvol toegevoegd!
+            </div>
+
+            <div id="errorMessage">
+                ✗ Er is een fout opgetreden. Vul alle velden in.
+            </div>
+
+            <form id="bloemForm">
+                <div class="form-group">
+                    <label for="bloemnaam">Bloemnaam: *</label>
+                    <input type="text" id="bloemnaam" name="bloemnaam" required placeholder="Bijv. Zonnebloemen">
+                </div>
+
+                <div class="form-group">
+                    <label for="prijs">Prijs: *</label>
+                    <input type="text" id="prijs" name="prijs" required placeholder="Bijv. 5,- of vanaf 10,-">
+                </div>
+
+                <div class="form-group">
+                    <label for="foto">Foto: *</label>
+                    <input type="file" id="foto" name="foto" required accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label for="beschrijving">Beschrijving (optioneel):</label>
+                    <textarea id="beschrijving" name="beschrijving" placeholder="Optionele beschrijving van de bloem..."></textarea>
+                </div>
+
+                <button type="submit">Bloem Toevoegen</button>
+            </form>
+
+            <div class="admin-footer">
+                <a href="index.html">← Terug naar homepage</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
