@@ -29,3 +29,4 @@ document.addEventListener("DOMContentLoaded", function() {
     divBloemen.appendChild(div);
   });
 });
+onsole.log(bloemen.naam);
