@@ -202,7 +202,7 @@ border-top-right-radius:10px;
     background-color: #D9EDB5;
     color: black;
     margin-top: 4vw;
-
+    overflow: hidden;
     font-size: 2vw;
 
 }
