@@ -1,21 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assortiment</title>
+    <title>Assortiment | Nora's Flora</title>
+    <link rel="preload" as="image" href="images/Nora'sFloraLogo.webp">
     <link rel="stylesheet" href="Nora's-Flora-teamnaam.css">
 </head>
+
 <body>
-<img id="logo" src="images/Nora'sFloraLogo.png" alt="Nora's Flora">
+    <img id="logo" src="images/Nora'sFloraLogo.webp" alt="Nora's Flora" width="200" height="80">
+
     <div class="div-options">
-        <a href="index.html">| Home |</a><a>| Assortiment |</a><a href="contact.html">| Contact |</a>
+        <a href="index.html">| Home |</a>
+        <a>| Assortiment |</a>
+        <a href="contact.html">| Contact |</a>
     </div>
-<div class="container" id="bloemenDiv"></div>
 
+    <div class="container" id="bloemenDiv"></div>
 
-
-<div id="footer" >
+    <div id="footer">
         <div class="footer-text">
             <p>Email</p>
             <p>Telefoon</p>
@@ -24,7 +29,7 @@
         <div class="footer-text">
             <p>: contact@noraflora.com</p>
             <p>: 06 12345678</p>
-            <p>: Zwolle, pannenkoekendijk 420 B</p>
+            <p>: Zwolle, Pannenkoekendijk 420 B</p>
         </div>
         <div class="footer-text">
             <p id="openingstijden">Openingstijden</p>
@@ -33,6 +38,8 @@
         </div>
     </div>
 
+    <script src="bloemen.js" defer></script>
+
 </body>
-<script src="bloemen.js"></script>
+
 </html>
