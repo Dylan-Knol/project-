@@ -3,36 +3,40 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nora's Flora - De beste persoonlijke bloemen en bouquetten in Zwolle. Alle bloemen fris bezorgd met passie en zorg.">
+    <meta name="keywords" content="bloemen,bouquetten,flora,Zwolle,bloemenhandel">
+    <meta name="author" content="Nora's Flora">
+    <meta name="theme-color" content="#3F593C">
     <title>Home | Nora's Flora</title>
 
     <link rel="preload" as="image" href="images/Nora'sFloraLogo.webp">
-    <link rel="preload" as="image" href="images/pexels-nextvoyage-457937.webp">
-
+    <link rel="preload" as="image" href="images/pexels-jmark-250716.webp">
     <link rel="stylesheet" href="Nora's-Flora-teamnaam.css">
 </head>
 
 <body>
-    <img id="logo" src="images/Nora'sFloraLogo.webp" alt="Nora's Flora" width="200" height="80">
+    <header>
+        <img id="logo" src="images/Nora'sFloraLogo.webp" alt="Nora's Flora" width="200" height="80">
+        <nav class="div-options" role="navigation">
+            <a href="index.html">| Home |</a>
+            <a href="Asortiment.html">| Assortiment |</a>
+            <a href="contact.html">| Contact |</a>
+        </nav>
+    </header>
 
-    <div class="div-options">
-        <a>| Home |</a>
-        <a href="Asortiment.html">| Assortiment |</a>
-        <a href="contact.html">| Contact |</a>
-    </div>
-
-    <div id="image-background">
+    <main>
+        <section id="image-background">
         <div>
             <p>Welkom bij Nora's Flora</p>
         </div>
         <p>De beste persoonlijke bouquetten en bloemen in Zwolle</p>
-    </div>
+    </section>
 
-    <p class="text-bloemen">Bloemetjes die in het zonnetje gezet worden</p>
+    <article>
+        <p class="text-bloemen">Bloemetjes die in het zonnetje gezet worden</p>
 
-    <div class="grid-container-bloemen">
-
-        <div class="plaatje1">
+        <section class="grid-container-bloemen">
             <img src="images/zonnebloemen.webp" alt="Zonnebloemen" loading="lazy" width="400" height="300">
             <p>Zonnebloemen<br>€ 2,- per bos deze maandag</p>
         </div>
@@ -57,9 +61,10 @@
             <img src="images/diversevet.webp" alt="Vetbloemen" loading="lazy" width="400" height="300">
             <p>Vetbloemen deze week<br>3 + 1 gratis</p>
         </div>
-    </div>
+        </section>
+    </article>
 
-    <div class="grid-container-welkom-nora-flora">
+    <article class="grid-container-welkom-nora-flora">
         <div class="title-welkom-nora-flora">Welkom bij Nora's Flora</div>
         <div class="plaatje-welkom-nora-flora">
             <img src="images/pexels-olly-3775156.webp" alt="Nora's Flora winkel" loading="lazy" width="600"
@@ -73,9 +78,10 @@
             Of je nu iemand wilt verrassen, een bruiloft plant of gewoon je dag
             wilt opfleuren, bij Nora's Flora zit je goed!
         </div>
-    </div>
+    </article>
+    </main>
 
-    <div id="footer">
+    <footer id="footer">
         <div class="footer-text">
             <p>Email</p>
             <p>Telefoon</p>
@@ -91,7 +97,7 @@
             <p>Ma - Vr : 12:00 - 17:00</p>
             <p>Zaterdag : 10:00 - 17:00</p>
         </div>
-    </div>
+    </footer>
 
 </body>
 

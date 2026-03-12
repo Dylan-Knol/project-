@@ -4,40 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact - Nora's Flora. Neem contact op voor vragen, bestellingen of anders wensen.">
+    <meta name="keywords" content="contact,bloemen,bereik ons,Nora's Flora">
+    <meta name="author" content="Nora's Flora">
     <title>Contact | Nora's Flora</title>
     <link rel="preload" as="image" href="images/Nora'sFloraLogo.webp">
     <link rel="stylesheet" href="Nora's-Flora-teamnaam.css">
 </head>
 
 <body>
-    <img id="logo" src="images/Nora'sFloraLogo.webp" alt="Nora's Flora" width="200" height="80">
+    <header>
+        <img id="logo" src="images/Nora'sFloraLogo.webp" alt="Nora's Flora" width="200" height="80">
+        <nav class="div-options" role="navigation">
+            <a href="index.html">| Home |</a>
+            <a href="Asortiment.html">| Assortiment |</a>
+            <a href="contact.html">| Contact |</a>
+        </nav>
+    </header>
 
-    <div class="div-options">
-        <a href="index.html">| Home |</a>
-        <a href="Asortiment.html">| Assortiment |</a>
-        <a>| Contact |</a>
-    </div>
+    <main>
+        <div class="lijntje">_</div>
 
-    <div class="lijntje">_</div>
+        <form class="grid-container-contact" aria-label="Contact form">
+        <form class="grid-container-contact" aria-label="Contact form">
+            <h1 class="titel-contact">Neem Contact Op</h1>
+            <div class="text-contact">
+                Heb je een vraag over onze bloemen, een bestelling of wil je gewoon even hallo zeggen?
+                We horen graag van je! Vul het contactformulier in of stuur ons een berichtje via email
+                of telefoon. Nora's Flora staat klaar om je te helpen met al je bloemige wensen. 🌸
+            </div>
+            <div class="vraag-contact">
+                <label for="contactName">Jouw naam:</label>
+                <input type="text" id="contactName" name="name" placeholder="Jouw naam" required>
+            </div>
+            <div class="email-contact">Email : contact@noraflora.com</div>
+            <div class="type-contact">
+                <label for="contactMessage">Jouw bericht:</label>
+                <textarea id="contactMessage" name="message" placeholder="Jouw bericht" required></textarea>
+            </div>
+            <div class="verzend-contact">
+                <button type="submit">Verzenden</button>
+            </div>
+        </form>
+    </main>
 
-    <div class="grid-container-contact">
-        <p class="titel-contact">Neem Contact Op</p>
-        <div class="text-contact">
-            Heb je een vraag over onze bloemen, een bestelling of wil je gewoon even hallo zeggen?
-            We horen graag van je! Vul het contactformulier in of stuur ons een berichtje via email
-            of telefoon. Nora's Flora staat klaar om je te helpen met al je bloemige wensen. 🌸
-        </div>
-        <div class="vraag-contact">
-            <input type="text" placeholder="Jouw naam">
-        </div>
-        <div class="email-contact">Email : contact@noraflora.com</div>
-        <div class="type-contact">
-            <input type="text" placeholder="Jouw bericht">
-        </div>
-        <div class="verzend-contact">Verzenden</div>
-    </div>
-
-    <div id="footer">
+    <footer id="footer">
         <div class="footer-text">
             <p>Email</p>
             <p>Telefoon</p>
@@ -53,7 +64,7 @@
             <p>Ma - Vr : 12:00 - 17:00</p>
             <p>Zaterdag : 10:00 - 17:00</p>
         </div>
-    </div>
+    </footer>
 
 </body>
 
