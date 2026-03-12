@@ -6,7 +6,7 @@ const bloemen = [
   { naam: "Speciaal samengestelde trouwdag bouquet", prijs: "vanaf €20,-", foto: "./images/trouwbouquet.webp" },
   { naam: "Lente bouquet", prijs: "vanaf €25,-", foto: "./images/lentebouquet.webp" },
   { naam: "Diversen vet planten", prijs: "vanaf €5,- per pot", foto: "./images/diversevet.webp" },
-  { naam: "Diverse lente bloemen", prijs: "vanaf €7,50 per bos", foto: "./images/lentebloemen.webp" },
+  { naam: "Diverse lente bloemen", prijs: "vanaf €7,50 per bos", foto: "./images/diverselente.webp" },
   { naam: "Paarse Allium Bloemen", prijs: "€4,- per bos", foto: "./images/allium.webp" }
 ];
 
