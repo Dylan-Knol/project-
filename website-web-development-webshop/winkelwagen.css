@@ -1,0 +1,49 @@
+body{
+    background:linear-gradient(#D9EDB5);
+}
+
+
+h2{
+    text-align: center;
+}
+
+img{width: 100px;}
+
+.item{grid-area: item;}
+.price{grid-area: price;}
+.aantal{grid-area: aantal;}
+.fotoVanProduct{grid-area: fotoVanProduct;}
+.naamVanProduct{grid-area: naamVanProduct;}
+.prijsInEuro{grid-area: prijsInEuro;}
+.aantalInGetal{grid-area: aantalInGetal;}
+.buttonRemove{grid-area: buttonRemove;}
+.totaal{grid-area: totaal;}
+.totaalPrijs{grid-area: totaalPrijs;}
+.box{display: grid;
+    grid-template-areas:
+    "item price aantal none none none"
+    "fotoVanProduct naamVanProduct PrijsInEuro aantalInGetal buttonRemove"
+    "none none none totaal totaalPrijs";
+
+}
+
+.box div{
+background-color: rgb(163, 221, 87);
+border-radius: 10px;
+text-align: center;
+margin: 10px;
+
+
+}
+
+div{
+    text-align: center;
+}
+
+.purchase-btn{
+    background-color: lightblue;
+}
+
+.remove-btn{
+    background-color: lightcoral;
+}
