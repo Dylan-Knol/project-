@@ -1,58 +1,81 @@
+// Standaard bloemen
 const bloemen = [
-  {naam: "Zonnebloemen", prijs: "€5,-", foto:"./images/zonnebloemen.jpg"},
-  {naam: "Rode Tulpen", prijs: "€7,68", foto:"./images/tulpen.jpg"},
-
-  {naam: "Rozen bouquet", prijs: "€19,60", foto:"./images/rozen.jpg"},
-  {naam: "Speciaal samengestelde trouwdag bouquet", prijs: "vanaf €20,-", foto:"./images/trouwbouquet.jpg"},
-  {naam: "Lente bouquet", prijs: "vanaf €25", foto:"./images/lentebouquet.jpg"},
-  {naam: "Diversen vet planten", prijs: "vanaf €5,- per pot", foto:"./images/diversevet.jpg"},
-  {naam: "Diverse lente bloemen", prijs: "vanaf €7,50 per bos", foto:"./images/lentebouquet.jpg"},
-  {naam: "Paarse Allium Bloemen", prijs: "€4,- per bos", foto:"./images/allium.jpg"}
+  { naam: "Zonnebloemen", prijs: "€5,-", foto: "./images/zonnebloemen.webp" },
+  { naam: "Rode Tulpen", prijs: "€7,68", foto: "./images/tulpen.webp" },
+  { naam: "Rozen bouquet", prijs: "€19,60", foto: "./images/rozen.webp" },
+  { naam: "Speciaal samengestelde trouwdag bouquet", prijs: "vanaf €20,-", foto: "./images/trouwbouquet.webp" },
+  { naam: "Lente bouquet", prijs: "vanaf €25,-", foto: "./images/lentebouquet.webp" },
+  { naam: "Diversen vet planten", prijs: "vanaf €5,- per pot", foto: "./images/diversevet.webp" },
+  { naam: "Diverse lente bloemen", prijs: "vanaf €7,50 per bos", foto: "./images/lentebloemen.webp" },
+  { naam: "Paarse Allium Bloemen", prijs: "€4,- per bos", foto: "./images/allium.webp" }
 ];
 
 // Laad opgeslagen bloemen uit localStorage
 function laadBloemenUitLocalStorage() {
   const opgeslagen = localStorage.getItem("bloemedatabase");
   if (opgeslagen) {
-    const toegevoegdeBloemen = JSON.parse(opgeslagen);
-    bloemen.push(...toegevoegdeBloemen);
+    try {
+      const toegevoegdeBloemen = JSON.parse(opgeslagen);
+      bloemen.push(...toegevoegdeBloemen);
+    } catch (e) {
+      console.error("Fout bij laden bloemen:", e);
+    }
   }
 }
 
-// Sla bloemen op in localStorage
+// Sla toegevoegde bloemen op in localStorage
 function slaBloemenOp() {
-  const toegevoegde = bloemen.slice(9); // Alles na de standaard bloemen
+  const toegevoegde = bloemen.slice(8); // Alles na de 8 standaard bloemen
   localStorage.setItem("bloemedatabase", JSON.stringify(toegevoegde));
 }
 
+// Maak een bloem-element aan
+function maakBloemElement(bloem, index) {
+  const div = document.createElement("div");
+  div.className = "bloem" + (index + 1);
+
+  const img = document.createElement("img");
+  img.src = bloem.foto;
+  img.alt = bloem.naam;
+  img.loading = "lazy"; // Lazy loading voor snellere pagina
+  img.width = 300;
+  img.height = 200;
+
+  const naam = document.createElement("p");
+  naam.textContent = bloem.naam;
+
+  const prijs = document.createElement("p");
+  prijs.textContent = bloem.prijs;
+
+  div.appendChild(img);
+  div.appendChild(naam);
+  div.appendChild(prijs);
+
+  return div;
+}
+
+// Render alle bloemen in één keer (sneller dan losse appends)
+function renderBloemen(container) {
+  const fragment = document.createDocumentFragment();
+  bloemen.forEach((bloem, index) => {
+    fragment.appendChild(maakBloemElement(bloem, index));
+  });
+  container.appendChild(fragment);
+}
+
 // Laad bloemen bij pagina load
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   laadBloemenUitLocalStorage();
-  
+
   const divBloemen = document.getElementById("bloemenDiv");
-  
   if (divBloemen) {
-    bloemen.forEach((bloem, index) => {
-      const div = document.createElement("div");
-      div.className = "bloem" + (index + 1);
-
-      const img = document.createElement("img");
-      img.src = bloem.foto;
-      img.alt = bloem.naam;
-
-      div.appendChild(img);
-      div.appendChild(document.createTextNode(bloem.naam));
-      div.appendChild(document.createElement("br"));
-      div.appendChild(document.createTextNode(bloem.prijs));
-
-      divBloemen.appendChild(div);
-    });
+    renderBloemen(divBloemen);
   }
 
   // Admin formulier afhandelen
   const bloemForm = document.getElementById("bloemForm");
   if (bloemForm) {
-    bloemForm.addEventListener("submit", function(event) {
+    bloemForm.addEventListener("submit", function (event) {
       event.preventDefault();
 
       const bloemnaam = document.getElementById("bloemnaam").value.trim();
@@ -70,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
       // Zet foto om naar Base64
       const fileReader = new FileReader();
-      fileReader.onload = function(e) {
+      fileReader.onload = function (e) {
         const base64Foto = e.target.result;
 
         // Voeg bloem toe
