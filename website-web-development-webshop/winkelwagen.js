@@ -9,7 +9,7 @@ function ready() {
 console.log(removeCartItemButtons);
 for (var i = 0; i < removeCartItemButtons.length; i++) {
     var button = removeCartItemButtons[i];
-    button.addEventListener('click', function (event) {
+    button.addEventListener('click'), function (event) {
 
         var quantityInputs = document.getElementsByClassName('cart-quantity-input');
         for (var i = 0; i < quantityInputs.length; i++) {
