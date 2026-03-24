@@ -12,9 +12,10 @@ const bloemen = [
 
 function maakBloemElement(bloem, index) {
   const div = document.createElement("div");
-  div.className = "bloem" + (index + 1);
+  div.className = "shop-item bloem" + (index + 1);
 
   const img = document.createElement("img");
+  img.className = "shop-item-image";
   img.src = bloem.foto;
   img.alt = bloem.naam;
   img.loading = "lazy"; 
@@ -22,19 +23,22 @@ function maakBloemElement(bloem, index) {
   img.height = 200;
 
   const naam = document.createElement("p");
+  naam.className = "shop-item-title";
   naam.textContent = bloem.naam;
 
   const prijs = document.createElement("p");
+  prijs.className = "shop-item-price";
   prijs.textContent = bloem.prijs;
 
-  const button = document.createElement("button");
-  button.textContent = "ADD";
-  button.className="shop-item-button";
+  const addButton = document.createElement("button");
+  addButton.className = "shop-item-button";
+  addButton.textContent = "In winkelwagen";
 
   div.appendChild(img);
   div.appendChild(naam);
   div.appendChild(prijs);
-  div.appendChild(button);
+  div.appendChild(addButton);
+
   return div;
 }
 
