@@ -27,10 +27,14 @@ function maakBloemElement(bloem, index) {
   const prijs = document.createElement("p");
   prijs.textContent = bloem.prijs;
 
+  const button = document.createElement("button");
+  button.textContent = "ADD";
+  button.className="shop-item-button";
+
   div.appendChild(img);
   div.appendChild(naam);
   div.appendChild(prijs);
-
+  div.appendChild(button);
   return div;
 }
 
