@@ -1,23 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assortiment</title>
+    <meta name="description" content="Assortiment bloemen - Nora's Flora. Ontdek ons ruime selectie van bloemen en planten in Zwolle.">
+    <meta name="keywords" content="bloemen,assortiment,boeketten,Zwolle">
+    <meta name="author" content="Nora's Flora">
+    <title>Assortiment | Nora's Flora</title>
+    <link rel="preload" as="image" href="images/Nora'sFloraLogo.webp">
     <link rel="stylesheet" href="Nora's-Flora-teamnaam.css">
 </head>
+
 <body>
-<img id="logo" src="images/Nora'sFloraLogo.png" alt="Nora's Flora">
-    <div class="div-options">
-        <a href="index.html">| Home |</a><a>| Assortiment |</a><a href="contact.html">| Contact |</a>
-    </div>
-<div class="container" id="bloemenDiv">
-        
-</div>
+    <header>
+        <img id="logo" src="images/Nora'sFloraLogo.webp" alt="Nora's Flora" width="200" height="80">
+        <nav class="div-options" role="navigation">
+            <a href="index.html">| Home |</a>
+            <a href="Asortiment.html">| Assortiment |</a>
+            <a href="contact.html">| Contact |</a>
+        </nav>
+    </header>
 
+    <main>
+        <article class="container" id="bloemenDiv"></article>
+    </main>
 
-
-<div id="footer" >
+    <footer id="footer">
         <div class="footer-text">
             <p>Email</p>
             <p>Telefoon</p>
@@ -26,15 +35,17 @@
         <div class="footer-text">
             <p>: contact@noraflora.com</p>
             <p>: 06 12345678</p>
-            <p>: Zwolle, pannenkoekendijk 420 B</p>
+            <p>: Zwolle, Pannenkoekendijk 420 B</p>
         </div>
         <div class="footer-text">
             <p id="openingstijden">Openingstijden</p>
             <p>Ma - Vr : 12:00 - 17:00</p>
             <p>Zaterdag : 10:00 - 17:00</p>
         </div>
-    </div>
+    </footer>
 
+    <script src="bloemen.js" defer></script>
+    <script src="winkelwagen.js" defer></script>
 </body>
-<script src="admin.js"></script>
+
 </html>
