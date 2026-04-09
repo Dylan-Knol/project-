@@ -33,6 +33,14 @@ function maakBloemElement(bloem, index) {
   const addButton = document.createElement("button");
   addButton.className = "shop-item-button";
   addButton.textContent = "In winkelwagen";
+  addButton.onclick = function() {
+    // Add to cart using the addToCart function from winkelwagen.js
+    if (typeof addToCart === 'function') {
+      addToCart(bloem.naam, bloem.prijs, bloem.foto);
+      alert(bloem.naam + ' is toegevoegd aan uw winkelwagen');
+      window.location.href = 'winkelwagen.html';
+    }
+  };
 
   div.appendChild(img);
   div.appendChild(naam);

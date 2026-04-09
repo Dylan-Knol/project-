@@ -1,132 +1,131 @@
-if (document.readyState == 'loading') {
-    document.addEventListener('DOMContentLoaded', ready);
-} else {
-    ready();
+
+document.addEventListener('DOMContentLoaded', function() {
+    displayCart();
+    updateTotal();
+});
+
+
+function displayCart() {
+    const cartContainer = document.getElementById('cartItems');
+    const cart = getCart();
+    
+    if (cart.length === 0) {
+        cartContainer.innerHTML = '<div class="empty-cart"><p>Uw winkelwagen is leeg</p><a href="Asortiment.html">Terug naar assortiment</a></div>';
+        return;
+    }
+    
+    cartContainer.innerHTML = '';
+    cart.forEach((item, index) => {
+        const itemDiv = createCartItemElement(item, index);
+        cartContainer.appendChild(itemDiv);
+    });
 }
 
-function ready() {
 
-    // REMOVE buttons
-    var removeCartItemButtons = document.getElementsByClassName('btn-danger');
-    for (var i = 0; i < removeCartItemButtons.length; i++) {
-        var button = removeCartItemButtons[i];
-        button.addEventListener('click', removeCartItem);
-    }
+function createCartItemElement(item, index) {
+    const div = document.createElement('div');
+    div.className = 'cart-item-row';
+    
 
-    // Quantity inputs
-    var quantityInputs = document.getElementsByClassName('cart-quantity-input');
-    for (var i = 0; i < quantityInputs.length; i++) {
-        var input = quantityInputs[i];
-        input.addEventListener('change', quantityChanged);
-    }
-
-    // Add to cart buttons
-    var addToCartButtons = document.getElementsByClassName('shop-item-button');
-    for (var i = 0; i < addToCartButtons.length; i++) {
-        var button = addToCartButtons[i];
-        button.addEventListener('click', addToCartClicked);
-    }
-
-    // Purchase button
-    document.getElementsByClassName('btn-purchase')[0]
-        .addEventListener('click', purchaseClicked);
+    const priceText = item.price.replace('€', '').replace(',-', '').replace('van af ', '').trim();
+    const priceNum = parseFloat(priceText.split(' ')[0]) || 0;
+    
+    div.innerHTML = `
+        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+        <div class="cart-item-info">
+            <div class="cart-item-title">${item.name}</div>
+            <div class="cart-item-price">${item.price}</div>
+        </div>
+        <div class="quantity-control">
+            <label>Aantal:</label>
+            <input type="number" min="1" value="${item.quantity}" 
+                   onchange="updateQuantity(${index}, this.value)">
+        </div>
+        <button class="btn-delete" onclick="removeFromCart(${index})">Delete</button>
+    `;
+    
+    return div;
 }
+
+
+function addToCart(name, price, image) {
+    const cart = getCart();
+    
+  
+    const existingItem = cart.find(item => item.name === name);
+    if (existingItem) {
+        existingItem.quantity++;
+    } else {
+        cart.push({
+            name: name,
+            price: price,
+            image: image,
+            quantity: 1
+        });
+    }
+    
+    saveCart(cart);
+}
+
+
+function removeFromCart(index) {
+    const cart = getCart();
+    cart.splice(index, 1);
+    saveCart(cart);
+    displayCart();
+    updateTotal();
+}
+
+
+function updateQuantity(index, quantity) {
+    const cart = getCart();
+    quantity = parseInt(quantity);
+    
+    if (isNaN(quantity) || quantity < 1) {
+        quantity = 1;
+    }
+    
+    cart[index].quantity = quantity;
+    saveCart(cart);
+    displayCart();
+    updateTotal();
+}
+
+
+function getCart() {
+    const cart = localStorage.getItem('cart');
+    return cart ? JSON.parse(cart) : [];
+}
+
+
+function saveCart(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+
+function updateTotal() {
+    const cart = getCart();
+    let total = 0;
+    
+    cart.forEach(item => {
+        const priceText = item.price.replace('€', '').replace(',-', '').replace('van af ', '').trim();
+        const priceNum = parseFloat(priceText.split(' ')[0]) || 0;
+        total += priceNum * item.quantity;
+    });
+    
+    document.getElementById('totalPrice').innerText = '€' + total.toFixed(2);
+}
+
 
 function purchaseClicked() {
-    alert('Thank you for your purchase');
-
-    var cartItems = document.getElementsByClassName('cart-items')[0];
-    while (cartItems.hasChildNodes()) {
-        cartItems.removeChild(cartItems.firstChild);
+    const cart = getCart();
+    if (cart.length === 0) {
+        alert('Uw winkelwagen is leeg');
+        return;
     }
-
-    updateCartTotal();
-}
-
-function removeCartItem(event) {
-    var buttonClicked = event.target;
-    buttonClicked.parentElement.parentElement.remove();
-    updateCartTotal();
-}
-
-function quantityChanged(event) {
-    var input = event.target;
-
-    if (isNaN(input.value) || input.value <= 0) {
-        input.value = 1;
-    }
-
-    updateCartTotal();
-}
-
-function addToCartClicked(event) {
-    var button = event.target;
-    var shopItem = button.parentElement;
-
-    var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText;
-    var price = shopItem.getElementsByClassName('shop-item-price')[0].innerText;
-    var imageSrc = shopItem.getElementsByClassName('shop-item-image')[0].src;
-
-    addItemToCart(title, price, imageSrc);
-    updateCartTotal();
-}
-
-function addItemToCart(title, price, imageSrc) {
-
-    var cartRow = document.createElement('div');
-    cartRow.classList.add('cart-row');
-
-    var cartItems = document.getElementsByClassName('cart-items')[0];
-    var cartItemNames = cartItems.getElementsByClassName('cart-item-title');
-
-    // Check duplicate
-    for (var i = 0; i < cartItemNames.length; i++) {
-        if (cartItemNames[i].innerText == title) {
-            alert('This item is already added to the cart');
-            return;
-        }
-    }
-
-    var cartRowContents = `
-        <div class="cart-item">
-            <img class="cart-item-image" src="${imageSrc}" width="50">
-            <span class="cart-item-title">${title}</span>
-        </div>
-        <span class="cart-price">${price}</span>
-        <div class="cart-quantity">
-            <input class="cart-quantity-input" type="number" value="1">
-            <button class="btn btn-danger">REMOVE</button>
-        </div>
-    `;
-
-    cartRow.innerHTML = cartRowContents;
-    cartItems.append(cartRow);
-
-    // Events toevoegen aan nieuwe items
-    cartRow.getElementsByClassName('btn-danger')[0]
-        .addEventListener('click', removeCartItem);
-
-    cartRow.getElementsByClassName('cart-quantity-input')[0]
-        .addEventListener('change', quantityChanged);
-}
-
-function updateCartTotal() {
-    var cartItemContainer = document.getElementsByClassName('cart-items')[0];
-    var cartRows = cartItemContainer.getElementsByClassName('cart-row');
-
-    var total = 0;
-
-    for (var i = 0; i < cartRows.length; i++) {
-        var cartRow = cartRows[i];
-
-        var priceElement = cartRow.getElementsByClassName('cart-price')[0];
-        var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0];
-
-        var price = parseFloat(priceElement.innerText.replace('$', ''));
-        var quantity = quantityElement.value;
-
-        total += price * quantity;
-    }
-
-
+    
+    alert('Bedankt voor uw aankoop!');
+    localStorage.removeItem('cart');
+    displayCart();
+    updateTotal();
 }
