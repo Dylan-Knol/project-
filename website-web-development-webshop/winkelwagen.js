@@ -22,31 +22,6 @@ function displayCart() {
 }
 
 
-<<<<<<< HEAD
-function createCartItemElement(item, index) {
-    const div = document.createElement('div');
-    div.className = 'cart-item-row';
-    
-
-    const priceText = item.price.replace('€', '').replace(',-', '').replace('van af ', '').trim();
-    const priceNum = parseFloat(priceText.split(' ')[0]) || 0;
-    
-    div.innerHTML = `
-        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
-        <div class="cart-item-info">
-            <div class="cart-item-title">${item.name}</div>
-            <div class="cart-item-price">${item.price}</div>
-        </div>
-        <div class="quantity-control">
-            <label>Aantal:</label>
-            <input type="number" min="1" value="${item.quantity}" 
-                   onchange="updateQuantity(${index}, this.value)">
-        </div>
-        <button class="btn-delete" onclick="removeFromCart(${index})">Delete</button>
-    `;
-    
-    return div;
-=======
     
     var removeCartItemButtons = document.getElementsByClassName('btn-danger');
     for (var i = 0; i < removeCartItemButtons.length; i++) {
@@ -71,7 +46,6 @@ function createCartItemElement(item, index) {
     
     document.getElementsByClassName('btn-purchase')[0]
         .addEventListener('click', purchaseClicked);
->>>>>>> c85f19466651e4d7432aee40694d71c94fcf269f
 }
 
 
