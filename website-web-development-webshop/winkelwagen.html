@@ -1,15 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
-    <title>Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winkelwagen | Nora's Flora</title>
     <link rel="stylesheet" href="Nora's-Flora-teamnaam.css">
     <style>
-        body { font-family: Arial; }
-        .shop-item, .cart-row { margin: 10px 0; }
-        .btn { padding: 5px 10px; cursor: pointer; }
-        .btn-danger { background: red; color: white; }
-        .shop-item-image { width: 100px; }
+        .cart-container { max-width: 1200px; margin: 20px auto; }
+        .cart-item-row { 
+            display: flex; 
+            align-items: center; 
+            border: 1px solid #ddd; 
+            padding: 15px; 
+            margin: 10px 0; 
+            gap: 20px;
+        }
+        .cart-item-image { width: 80px; height: 80px; object-fit: cover; }
+        .cart-item-info { flex-grow: 1; }
+        .cart-item-title { font-weight: bold; margin: 5px 0; }
+        .cart-item-price { color: #2c5f2d; font-weight: bold; margin: 5px 0; }
+        .quantity-control { display: flex; align-items: center; gap: 10px; }
+        .quantity-control input { width: 60px; padding: 5px; }
+        .btn-delete { background: red; color: white; padding: 8px 12px; border: none; cursor: pointer; }
+        .cart-summary { 
+            background: #f5f5f5; 
+            border: 2px solid #2c5f2d; 
+            padding: 20px; 
+            margin-top: 30px; 
+            text-align: right;
+        }
+        .total-price { font-size: 24px; font-weight: bold; color: #2c5f2d; margin: 15px 0; }
+        .btn-purchase { 
+            background: #2c5f2d; 
+            color: white; 
+            padding: 12px 30px; 
+            font-size: 16px; 
+            border: none; 
+            cursor: pointer; 
+            margin-top: 15px;
+        }
+        .empty-cart { text-align: center; padding: 40px; }
     </style>
     <a href="index.html">| Home |</a>
     <a href="Asortiment.html">| Assortiment |</a>
@@ -17,157 +47,45 @@
     <a href="winkelwagen.html">| Winkelwagen |</a>
 </head>
 <body>
+    <header>
+        <img id="logo" src="images/Nora'sFloraLogo.webp" alt="Nora's Flora" width="200" height="80">
+        <nav class="div-options" role="navigation">
+            <a href="index.html">| Home |</a>
+            <a href="Asortiment.html">| Assortiment |</a>
+            <a href="contact.html">| Contact |</a>
+        </nav>
+    </header>
 
-<h1>My Shop</h1>
-
-<div class="shop-items">
-
-    <div class="shop-item">
-        <span class="shop-item-title">Item 1</span><br>
-        <img class="shop-item-image" src="images/zonnebloemen.webp"><br>
-        <span class="shop-item-price">$5</span><br>
-        <button class="btn shop-item-button">Add to Cart</button>
-    </div>
-
-    <div class="shop-item">
-        <span class="shop-item-title">Item 2</span><br>
-        <img class="shop-item-image" src="images/tulpen.webp"><br>
-        <span class="shop-item-price">$7,68</span><br>
-        <button class="btn shop-item-button">Add to Cart</button>
-    </div>
-
-</div>
-
-<hr>
-
-<h2>Cart</h2>
-
-<div class="cart-items"></div>
-
-<h3>Total: <span class="cart-total-price">$0</span></h3>
-
-<button class="btn btn-purchase">BUY</button>
-
-<script>
-if (document.readyState == 'loading') {
-    document.addEventListener('DOMContentLoaded', ready)
-} else {
-    ready()
-}
-
-function ready() {
-
-    var removeCartItemButtons = document.getElementsByClassName('btn-danger');
-    for (var i = 0; i < removeCartItemButtons.length; i++) {
-        var button = removeCartItemButtons[i];
-        button.addEventListener('click', removeCartItem);
-    }
-
-    var quantityInputs = document.getElementsByClassName('cart-quantity-input');
-    for (var i = 0; i < quantityInputs.length; i++) {
-        var input = quantityInputs[i]
-        input.addEventListener('change', quantityChanged);
-    }
-
-    var addToCartButtons = document.getElementsByClassName('shop-item-button');
-    for (var i = 0; i < addToCartButtons.length; i++) {
-        var button = addToCartButtons[i];
-        button.addEventListener('click', addToCartClicked);
-    }
-
-    document.getElementsByClassName('btn-purchase')[0]
-        .addEventListener('click', purchaseClicked);
-}
-
-function purchaseClicked() {
-    alert('Thank you for your purchase');
-    var cartItems = document.getElementsByClassName('cart-items')[0];
-    while (cartItems.hasChildNodes()) {
-        cartItems.removeChild(cartItems.firstChild);
-    }
-    updateCartTotal();
-}
-function removeCartItem(event) {
-    var buttonClicked = event.target;
-    buttonClicked.parentElement.parentElement.remove();
-    updateCartTotal();
-}
-
-function quantityChanged(event) {
-    var input = event.target;
-    if (isNaN(input.value) || input.value <= 0) {
-        input.value = 1;
-    }
-    updateCartTotal();
-}
-
-function addToCartClicked(event) {
-    var button = event.target;
-    var shopItem = button.parentElement;
-    var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText;
-    var price = shopItem.getElementsByClassName('shop-item-price')[0].innerText;
-    var imageSrc = shopItem.getElementsByClassName('shop-item-image')[0].src;
-
-    addItemToCart(title, price, imageSrc);
-    updateCartTotal();
-}
-
-function addItemToCart(title, price, imageSrc) {
-    var cartRow = document.createElement('div');
-    cartRow.classList.add('cart-row');
-
-    var cartItems = document.getElementsByClassName('cart-items')[0];
-    var cartItemNames = cartItems.getElementsByClassName('cart-item-title');
-
-    for (var i = 0; i < cartItemNames.length; i++) {
-        if (cartItemNames[i].innerText == title) {
-            alert('This item is already added');
-            return;
-        }
-    }
-
-    var cartRowContents = `
-        <div>
-            <img src="${imageSrc}" width="50">
-            <span class="cart-item-title">${title}</span>
+    <main>
+        <div class="cart-container">
+            <h1>Winkelwagen</h1>
+            <div id="cartItems"></div>
+            <div class="cart-summary">
+                <h3>Totaal: <span id="totalPrice">€0.00</span></h3>
+                <button class="btn-purchase" onclick="purchaseClicked()">Kopen</button>
+            </div>
         </div>
-        <span class="cart-price">${price}</span>
-        <div>
-            <input class="cart-quantity-input" type="number" value="1">
-            <button class="btn btn-danger">REMOVE</button>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-text">
+            <p>Email</p>
+            <p>Telefoon</p>
+            <p>Adres</p>
         </div>
-    `;
+        <div class="footer-text">
+            <p>: contact@noraflora.com</p>
+            <p>: 06 12345678</p>
+            <p>: Zwolle, Pannenkoekendijk 420 B</p>
+        </div>
+        <div class="footer-text">
+            <p id="openingstijden">Openingstijden</p>
+            <p>Ma - Vr : 12:00 - 17:00</p>
+            <p>Zaterdag : 10:00 - 17:00</p>
+        </div>
+    </footer>
 
-    cartRow.innerHTML = cartRowContents;
-    cartItems.append(cartRow);
-
-    cartRow.getElementsByClassName('btn-danger')[0]
-        .addEventListener('click', removeCartItem);
-
-    cartRow.getElementsByClassName('cart-quantity-input')[0]
-        .addEventListener('change', quantityChanged);
-}
-
-function updateCartTotal() {
-    var cartItemContainer = document.getElementsByClassName('cart-items')[0];
-    var cartRows = cartItemContainer.getElementsByClassName('cart-row');
-    var total = 0;
-
-    for (var i = 0; i < cartRows.length; i++) {
-        var cartRow = cartRows[i];
-        var priceElement = cartRow.getElementsByClassName('cart-price')[0];
-        var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0];
-
-        var price = parseFloat(priceElement.innerText.replace('$', ''));
-        var quantity = quantityElement.value;
-
-        total += price * quantity;
-    }
-
-    total = Math.round(total * 100) / 100;
-    document.getElementsByClassName('cart-total-price')[0].innerText = '$' + total;
-}
-</script>
-
+    <script src="bloemen.js"></script>
+    <script src="winkelwagen.js"></script>
 </body>
 </html>

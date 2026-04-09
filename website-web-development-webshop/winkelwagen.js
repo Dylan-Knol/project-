@@ -1,183 +1,158 @@
 
-if (document.readyState == 'loading') {
-    document.addEventListener('DOMContentLoaded', ready);
-} else {
-    ready();
+document.addEventListener('DOMContentLoaded', function() {
+    displayCart();
+    updateTotal();
+});
+
+
+function displayCart() {
+    const cartContainer = document.getElementById('cartItems');
+    const cart = getCart();
+    
+    if (cart.length === 0) {
+        cartContainer.innerHTML = '<div class="empty-cart"><p>Uw winkelwagen is leeg</p><a href="Asortiment.html">Terug naar assortiment</a></div>';
+        return;
+    }
+    
+    cartContainer.innerHTML = '';
+    cart.forEach((item, index) => {
+        const itemDiv = createCartItemElement(item, index);
+        cartContainer.appendChild(itemDiv);
+    });
 }
 
-function ready() {
+
+<<<<<<< HEAD
+function createCartItemElement(item, index) {
+    const div = document.createElement('div');
+    div.className = 'cart-item-row';
+    
+
+    const priceText = item.price.replace('€', '').replace(',-', '').replace('van af ', '').trim();
+    const priceNum = parseFloat(priceText.split(' ')[0]) || 0;
+    
+    div.innerHTML = `
+        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+        <div class="cart-item-info">
+            <div class="cart-item-title">${item.name}</div>
+            <div class="cart-item-price">${item.price}</div>
+        </div>
+        <div class="quantity-control">
+            <label>Aantal:</label>
+            <input type="number" min="1" value="${item.quantity}" 
+                   onchange="updateQuantity(${index}, this.value)">
+        </div>
+        <button class="btn-delete" onclick="removeFromCart(${index})">Delete</button>
+    `;
+    
+    return div;
+=======
+    
+    var removeCartItemButtons = document.getElementsByClassName('btn-danger');
+    for (var i = 0; i < removeCartItemButtons.length; i++) {
+        var button = removeCartItemButtons[i];
+        button.addEventListener('click', removeCartItem);
+    }
 
     
-    loadCart();
-
-    var purchaseButton = document.getElementsByClassName('btn-purchase')[0];
-    if (purchaseButton) {
-        purchaseButton.addEventListener('click', purchaseClicked);
+    var quantityInputs = document.getElementsByClassName('cart-quantity-input');
+    for (var i = 0; i < quantityInputs.length; i++) {
+        var input = quantityInputs[i];
+        input.addEventListener('change', quantityChanged);
     }
+
+    
+    var addToCartButtons = document.getElementsByClassName('shop-item-button');
+    for (var i = 0; i < addToCartButtons.length; i++) {
+        var button = addToCartButtons[i];
+        button.addEventListener('click', addToCartClicked);
+    }
+
+    
+    document.getElementsByClassName('btn-purchase')[0]
+        .addEventListener('click', purchaseClicked);
+>>>>>>> c85f19466651e4d7432aee40694d71c94fcf269f
 }
 
-function addToCartClicked(event) {
-    var button = event.target;
-    var shopItem = button.parentElement;
 
-    var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText;
-    var price = shopItem.getElementsByClassName('shop-item-price')[0].innerText;
-    var imageSrc = shopItem.getElementsByClassName('shop-item-image')[0].src;
-
-    var cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    var existing = cart.find(item => item.title === title);
-
-    if (existing) {
-        existing.quantity += 1;
+function addToCart(name, price, image) {
+    const cart = getCart();
+    
+  
+    const existingItem = cart.find(item => item.name === name);
+    if (existingItem) {
+        existingItem.quantity++;
     } else {
         cart.push({
-            title: title,
+            name: name,
             price: price,
-            image: imageSrc,
+            image: image,
             quantity: 1
         });
     }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-
-    window.location.href = "winkelwagen.html";
+    
+    saveCart(cart);
 }
-function loadCart() {
-    var cartItems = document.getElementsByClassName('cart-items')[0];
-    if (!cartItems) return;
 
-    cartItems.innerHTML = "";
 
-    var cart = JSON.parse(localStorage.getItem("cart")) || [];
+function removeFromCart(index) {
+    const cart = getCart();
+    cart.splice(index, 1);
+    saveCart(cart);
+    displayCart();
+    updateTotal();
+}
 
+
+function updateQuantity(index, quantity) {
+    const cart = getCart();
+    quantity = parseInt(quantity);
+    
+    if (isNaN(quantity) || quantity < 1) {
+        quantity = 1;
+    }
+    
+    cart[index].quantity = quantity;
+    saveCart(cart);
+    displayCart();
+    updateTotal();
+}
+
+
+function getCart() {
+    const cart = localStorage.getItem('cart');
+    return cart ? JSON.parse(cart) : [];
+}
+
+
+function saveCart(cart) {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+
+function updateTotal() {
+    const cart = getCart();
+    let total = 0;
+    
     cart.forEach(item => {
-        addItemToCart(item.title, item.price, item.image, item.quantity);
+        const priceText = item.price.replace('€', '').replace(',-', '').replace('van af ', '').trim();
+        const priceNum = parseFloat(priceText.split(' ')[0]) || 0;
+        total += priceNum * item.quantity;
     });
-
-    updateCartTotal();
-}
-
-
-function addItemToCart(title, price, imageSrc, quantity = 1) {
-
-    var cartItems = document.getElementsByClassName('cart-items')[0];
-    if (!cartItems) return;
-
-    var cartRow = document.createElement('div');
-    cartRow.classList.add('cart-row');
-
-    var cartRowContents = `
-        <div class="cart-item">
-            <img src="${imageSrc}" width="80">
-            <span class="cart-item-title">${title}</span>
-        </div>
-        <span class="cart-price">${price}</span>
-        <div class="cart-quantity">
-            <input class="cart-quantity-input" type="number" value="${quantity}">
-            <button class="btn-danger">Verwijder</button>
-        </div>
-    `;
-
-    cartRow.innerHTML = cartRowContents;
-    cartItems.append(cartRow);
-
-    cartRow.getElementsByClassName('btn-danger')[0]
-        .addEventListener('click', function () {
-            removeCartItem(title);
-        });
-
-   
-    cartRow.getElementsByClassName('cart-quantity-input')[0]
-        .addEventListener('change', function (event) {
-            quantityChanged(event, title);
-        });
-}
-
-
-function removeCartItem(title) {
-
-    var cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    cart = cart.filter(item => item.title !== title);
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    loadCart();
-}
-
-
-function quantityChanged(event, title) {
-
-    var input = event.target;
-
-    if (isNaN(input.value) || input.value <= 0) {
-        input.value = 1;
-    }
-
-    var cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    var item = cart.find(i => i.title === title);
-    if (item) {
-        item.quantity = parseInt(input.value);
-    }
-
-    localStorage.setItem("cart", JSON.stringify(cart));
-
-    updateCartTotal();
-}
-
-
-function updateCartTotal() {
-
-    var cartItemContainer = document.getElementsByClassName('cart-items')[0];
-    if (!cartItemContainer) return;
-
-    var cartRows = cartItemContainer.getElementsByClassName('cart-row');
-
-    var total = 0;
-
-    for (var i = 0; i < cartRows.length; i++) {
-
-        var cartRow = cartRows[i];
-
-        var priceElement = cartRow.getElementsByClassName('cart-price')[0];
-        var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0];
-
-        var priceText = priceElement.innerText;
-
-        
-        var price = priceText
-            .replace('€', '')
-            .replace(',', '.')
-            .replace('vanaf', '')
-            .replace('per bos', '')
-            .replace('per pot', '')
-            .replace('-', '')
-            .trim();
-
-        price = parseFloat(price) || 0;
-
-        var quantity = quantityElement.value;
-
-        total += price * quantity;
-    }
-
-    total = Math.round(total * 100) / 100;
-
-    var totalElement = document.getElementsByClassName('cart-total-price')[0];
-    if (totalElement) {
-        totalElement.innerText = '€' + total.toFixed(2);
-    }
+    
+    document.getElementById('totalPrice').innerText = '€' + total.toFixed(2);
 }
 
 
 function purchaseClicked() {
-
-    alert('Bedankt voor je aankoop! 🌸');
-
-    localStorage.removeItem("cart");
-
-    loadCart();
+    const cart = getCart();
+    if (cart.length === 0) {
+        alert('Uw winkelwagen is leeg');
+        return;
+    }
+    
+    alert('Bedankt voor uw aankoop!');
+    localStorage.removeItem('cart');
+    displayCart();
+    updateTotal();
 }
