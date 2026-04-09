@@ -6,28 +6,28 @@ if (document.readyState == 'loading') {
 
 function ready() {
 
-    // REMOVE buttons
+    
     var removeCartItemButtons = document.getElementsByClassName('btn-danger');
     for (var i = 0; i < removeCartItemButtons.length; i++) {
         var button = removeCartItemButtons[i];
         button.addEventListener('click', removeCartItem);
     }
 
-    // Quantity inputs
+    
     var quantityInputs = document.getElementsByClassName('cart-quantity-input');
     for (var i = 0; i < quantityInputs.length; i++) {
         var input = quantityInputs[i];
         input.addEventListener('change', quantityChanged);
     }
 
-    // Add to cart buttons
+    
     var addToCartButtons = document.getElementsByClassName('shop-item-button');
     for (var i = 0; i < addToCartButtons.length; i++) {
         var button = addToCartButtons[i];
         button.addEventListener('click', addToCartClicked);
     }
 
-    // Purchase button
+    
     document.getElementsByClassName('btn-purchase')[0]
         .addEventListener('click', purchaseClicked);
 }
