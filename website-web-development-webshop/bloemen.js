@@ -17,10 +17,6 @@ function maakBloemElement(bloem, index) {
   const img = document.createElement("img");
   img.className = "shop-item-image";
   img.src = bloem.foto;
-  img.alt = bloem.naam;
-  img.loading = "lazy"; 
-  img.width = 300;
-  img.height = 200;
 
   const naam = document.createElement("p");
   naam.className = "shop-item-title";
@@ -34,6 +30,8 @@ function maakBloemElement(bloem, index) {
   addButton.className = "shop-item-button";
   addButton.textContent = "In winkelwagen";
 
+  addButton.addEventListener("click", addToCartClicked);
+
   div.appendChild(img);
   div.appendChild(naam);
   div.appendChild(prijs);
@@ -46,10 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const divBloemen = document.getElementById("bloemenDiv");
 
   if (divBloemen) {
-    const fragment = document.createDocumentFragment();
     bloemen.forEach((bloem, index) => {
-      fragment.appendChild(maakBloemElement(bloem, index));
+      divBloemen.appendChild(maakBloemElement(bloem, index));
     });
-    divBloemen.appendChild(fragment);
   }
 });

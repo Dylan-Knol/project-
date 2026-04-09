@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Shop</title>
+    <link rel="stylesheet" href="Nora's-Flora-teamnaam.css">
     <style>
         body { font-family: Arial; }
         .shop-item, .cart-row { margin: 10px 0; }
@@ -10,6 +11,10 @@
         .btn-danger { background: red; color: white; }
         .shop-item-image { width: 100px; }
     </style>
+    <a href="index.html">| Home |</a>
+    <a href="Asortiment.html">| Assortiment |</a>
+    <a href="contact.html">| Contact |</a>
+    <a href="winkelwagen.html">| Winkelwagen |</a>
 </head>
 <body>
 
@@ -19,15 +24,15 @@
 
     <div class="shop-item">
         <span class="shop-item-title">Item 1</span><br>
-        <img class="shop-item-image" src="https://via.placeholder.com/100"><br>
-        <span class="shop-item-price">$10</span><br>
+        <img class="shop-item-image" src="images/zonnebloemen.webp"><br>
+        <span class="shop-item-price">$5</span><br>
         <button class="btn shop-item-button">Add to Cart</button>
     </div>
 
     <div class="shop-item">
         <span class="shop-item-title">Item 2</span><br>
-        <img class="shop-item-image" src="https://via.placeholder.com/100"><br>
-        <span class="shop-item-price">$20</span><br>
+        <img class="shop-item-image" src="images/tulpen.webp"><br>
+        <span class="shop-item-price">$7,68</span><br>
         <button class="btn shop-item-button">Add to Cart</button>
     </div>
 
@@ -82,7 +87,6 @@ function purchaseClicked() {
     }
     updateCartTotal();
 }
-
 function removeCartItem(event) {
     var buttonClicked = event.target;
     buttonClicked.parentElement.parentElement.remove();

@@ -1,0 +1,488 @@
+/* ===== CSS VARIABLES ===== */
+:root {
+  --primary-bg: #3F593C;
+  --nav-bg: #283F25;
+  --grid-bg: #F6F8E7;
+  --card-bg: #D9EDB5;
+  --footer-bg: #193B19;
+  --text-white: #FFFFFF;
+  --text-black: #000000;
+  --border-radius: 12px;
+  --shadow: 0 10px 29px rgba(0, 0, 0, 1);
+}
+
+/* ===== ALGEMEEN ===== */
+body {
+  margin: 0px;
+  color: var(--text-white);
+  background-color: var(--primary-bg);
+}
+
+/* ===== LOGO & NAVIGATIE ===== */
+#logo {
+  display: block;
+  width: 16vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.div-options {
+  text-align: center;
+  width: 100%;
+  background-color: var(--nav-bg);
+  font-size: 2vw;
+}
+
+.div-options a {
+  padding-left: 1vw;
+  padding-right: 1vw;
+}
+
+/* ===== HOMEPAGE ===== */
+#image-background {
+  width: 100%;
+  height: 35vw;
+  background-image: url(images/pexels-jmark-250716.webp);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  margin: 0px;
+  border: 0px;
+  padding-top: 20vw;
+  padding-bottom: 0vw;
+}
+
+#image-background div p {
+  font-family: sans-serif;
+  text-shadow: var(--shadow);
+  font-size: 4vw;
+  text-align: center;
+  margin-top: 0vw;
+}
+
+#image-background p {
+  text-shadow: var(--shadow);
+  font-size: 2vw;
+  text-align: center;
+  margin-top: 0vw;
+}
+
+/* ===== BLOEMEN GRID (homepage) ===== */
+.text-bloemen { grid-area: text-bloemen; text-align: center; font-size: 3vw; }
+.plaatje1 { grid-area: plaatje1; }
+.plaatje2 { grid-area: plaatje2; }
+.plaatje3 { grid-area: plaatje3; }
+.plaatje4 { grid-area: plaatje4; }
+.plaatje5 { grid-area: plaatje5; }
+.plaatje6 { grid-area: plaatje6; }
+
+.grid-container-bloemen {
+  padding-bottom: 4vw;
+  padding-left: 5vw;
+  padding-right: 5vw;
+  background-color: var(--grid-bg);
+  display: grid;
+  grid-template-areas:
+    'text-bloemen'
+    'plaatje1'
+    'plaatje2'
+    'plaatje3'
+    'plaatje4'
+    'plaatje5'
+    'plaatje6';
+}
+
+@media (min-width: 500px) {
+  .grid-container-bloemen {
+    grid-template-areas:
+      'text-bloemen text-bloemen'
+      'plaatje1 plaatje2'
+      'plaatje3 plaatje4'
+      'plaatje5 plaatje6';
+  }
+}
+
+@media (min-width: 800px) {
+  .grid-container-bloemen {
+    grid-template-areas:
+      'text-bloemen text-bloemen text-bloemen'
+      'plaatje1 plaatje2 plaatje3'
+      'plaatje4 plaatje5 plaatje6';
+  }
+}
+
+.grid-container-bloemen div {
+  border-radius: var(--border-radius);
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  height: 90%;
+  text-align: center;
+  background-color: var(--card-bg);
+  color: var(--text-black);
+  margin-top: 4vw;
+  font-size: 2vw;
+}
+
+.grid-container-bloemen div img {
+  border-top-right-radius: var(--border-radius);
+  border-top-left-radius: var(--border-radius);
+  width: 100%;
+  overflow: hidden;
+  /* Voorkomt layout shifts door vaste beeldverhouding */
+  aspect-ratio: 20 / 17;
+  object-fit: cover;
+}
+
+.grid-container-bloemen div p {
+  margin: 0px;
+  font-size: 100%;
+}
+
+/* ===== WELKOM SECTIE (homepage) ===== */
+.title-welkom-nora-flora { grid-area: title-welkom-nora-flora; font-size: 2rem; }
+.text-welkom-nora-flora { grid-area: text-welkom-nora-flora; font-size: 1.80vw; }
+.plaatje-welkom-nora-flora { grid-area: plaatje-welkom-nora-flora; width: 33%; }
+
+.grid-container-welkom-nora-flora {
+  text-align: center;
+  display: grid;
+  grid-template-areas:
+    'title-welkom-nora-flora title-welkom-nora-flora title-welkom-nora-flora plaatje-welkom-nora-flora plaatje-welkom-nora-flora'
+    'text-welkom-nora-flora text-welkom-nora-flora text-welkom-nora-flora plaatje-welkom-nora-flora plaatje-welkom-nora-flora'
+    'text-welkom-nora-flora text-welkom-nora-flora text-welkom-nora-flora plaatje-welkom-nora-flora plaatje-welkom-nora-flora'
+    'text-welkom-nora-flora text-welkom-nora-flora text-welkom-nora-flora plaatje-welkom-nora-flora plaatje-welkom-nora-flora';
+}
+
+.grid-container-welkom-nora-flora div {
+  padding: 1.3rem;
+  padding-left: 3rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.plaatje-welkom-nora-flora img {
+  border-radius: var(--border-radius);
+  width: 160%;
+}
+
+/* ===== CONTACT PAGINA ===== */
+.lijntje {
+  background-color: var(--grid-bg);
+}
+
+.titel-contact { grid-area: titel-contact; }
+.text-contact { grid-area: text-contact; }
+.email-contact { grid-area: email-contact; }
+.vraag-contact { grid-area: vraag-contact; }
+.type-contact { grid-area: type-contact; }
+.verzend-contact { grid-area: verzend-contact; }
+
+.grid-container-contact {
+  display: grid;
+  grid-template-areas:
+    'titel-contact titel-contact'
+    'text-contact vraag-contact'
+    'email-contact type-contact'
+    'email-contact verzend-contact';
+  padding: 2rem;
+}
+
+.grid-container-contact div,
+.grid-container-contact h1 {
+  width: 49%;
+  text-align: center;
+}
+
+.grid-container-contact label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.grid-container-contact input,
+.grid-container-contact textarea {
+  width: 100%;
+  max-width: 20em;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid var(--nav-bg);
+  border-radius: 5px;
+  font-family: inherit;
+}
+
+.grid-container-contact textarea {
+  max-width: 20em;
+  height: 150px;
+  resize: vertical;
+}
+
+.grid-container-contact button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: var(--nav-bg);
+  color: var(--text-white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.grid-container-contact button:hover {
+  background-color: var(--primary-bg);
+}
+
+.grid-container-contact p { 
+  text-align: center; 
+}
+
+/* ===== ASSORTIMENT PAGINA ===== */
+.container div {
+  text-align: center;
+}
+
+.container img {
+  max-height: 100%;
+  max-width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.container div img {
+  height: 70%;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.bloem1 { grid-area: bloem1; }
+.bloem2 { grid-area: bloem2; }
+.bloem3 { grid-area: bloem3; }
+.bloem4 { grid-area: bloem4; }
+.bloem5 { grid-area: bloem5; }
+.bloem6 { grid-area: bloem6; }
+.bloem7 { grid-area: bloem7; }
+.bloem8 { grid-area: bloem8; }
+.bloem9 { grid-area: bloem9; }
+
+.container {
+  display: grid;
+  grid-template-areas:
+    "bloem1 bloem2 bloem3 bloem4"
+    "bloem5 bloem5 bloem6 bloem7"
+    "bloem5 bloem5 bloem8 bloem9";
+  gap: 1rem;
+  background-color: var(--text-white);
+  padding-top: 3rem;
+  padding-bottom: 5rem;
+  padding-left: 6rem;
+  padding-right: 6rem;
+}
+
+.container div {
+  border-radius: var(--border-radius);
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  background-color: var(--card-bg);
+  color: var(--text-black);
+  margin-top: 4vw;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  font-size: 1.5vw;
+}
+
+.container div p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.container div button {
+  background-color: var(--primary-bg);
+  color: var(--text-white);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.container div button:hover {
+  background-color: var(--nav-bg);
+}
+
+/* ===== FOOTER ===== */
+#footer {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+  background-color: var(--footer-bg);
+}
+
+.footer-text p { font-size: 1.8vw; }
+
+#openingstijden {
+  margin-top: 0px;
+  font-size: 2.6vw;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablets and small screens (600px - 1024px) */
+@media (max-width: 1024px) {
+  #logo {
+    width: 25vw;
+  }
+
+  .div-options {
+    font-size: 2.5vw;
+  }
+
+  .div-options a {
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+  }
+
+  .container {
+    grid-template-areas:
+      "bloem1 bloem2 bloem3"
+      "bloem4 bloem5 bloem5"
+      "bloem5 bloem6 bloem7"
+      "bloem8 bloem9 bloem9";
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .container div {
+    font-size: 1.8vw;
+  }
+
+  .container div p {
+    font-size: 0.95rem;
+  }
+
+  .footer-text p { 
+    font-size: 2.2vw; 
+  }
+
+  #openingstijden {
+    font-size: 3vw;
+  }
+}
+
+/* Mobile screens (max 600px) */
+@media (max-width: 600px) {
+  #logo {
+    width: 40vw;
+  }
+
+  .div-options {
+    font-size: 3vw;
+  }
+
+  .div-options a {
+    display: block;
+    padding: 0.5rem;
+  }
+
+  #image-background {
+    height: 50vw;
+    padding-top: 30vw;
+  }
+
+  #image-background div p {
+    font-size: 5vw;
+  }
+
+  #image-background p {
+    font-size: 3vw;
+  }
+
+  .text-bloemen { 
+    font-size: 4vw; 
+  }
+
+  .grid-container-bloemen {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    grid-template-areas:
+      'text-bloemen'
+      'plaatje1'
+      'plaatje2'
+      'plaatje3'
+      'plaatje4'
+      'plaatje5'
+      'plaatje6';
+  }
+
+  .container {
+    grid-template-areas:
+      "bloem1"
+      "bloem2"
+      "bloem3"
+      "bloem4"
+      "bloem5"
+      "bloem6"
+      "bloem7"
+      "bloem8"
+      "bloem9";
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+  .container div {
+    min-height: 250px;
+    font-size: 2.5vw;
+    margin-top: 1rem;
+  }
+
+  .container div p {
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+  }
+
+  .container div button {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .grid-container-contact {
+    grid-template-areas:
+      'titel-contact'
+      'text-contact'
+      'vraag-contact'
+      'email-contact'
+      'type-contact'
+      'verzend-contact';
+    padding: 1rem;
+  }
+
+  .grid-container-contact div,
+  .grid-container-contact h1 {
+    width: 100%;
+  }
+
+  .footer-text p { 
+    font-size: 2.5vw; 
+  }
+
+  #openingstijden {
+    font-size: 3.2vw;
+  }
+
+  #footer {
+    grid-template-columns: 1fr;
+    padding: 0.5rem;
+  }
+}
